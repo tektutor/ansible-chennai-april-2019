@@ -1,0 +1,32 @@
+Update the Extra Packages for Enterprise Linux
+++++++++++++++++++++++++++++++++++++++++++++++
+yum install -y epel-release
+
+Installing Docker in CentOS 7
++++++++++++++++++++++++++++++
+sudo yum install -y yum-utils \
+  device-mapper-persistent-data \
+  lvm2
+
+sudo yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+
+sudo yum install docker-ce docker-ce-cli containerd.io
+
+To check the version of docker installed
++++++++++++++++++++++++++++++++++++++++++
+docker --version
+
+Enable Docker Service and Start the docker Service
+++++++++++++++++++++++++++++++++++++++++++++++++++
+sudo systemctl enable docker
+sudo systemctl start docker
+
+Installing Ansible in CentOS 7
+++++++++++++++++++++++++++++++
+sudo yum install -y ansible
+
+Install Vim Editor, Gti & tree utity
++++++++++++++++++++++++++++++++
+yum install -y vim tree git
