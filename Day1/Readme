@@ -27,6 +27,6 @@ Installing Ansible in CentOS 7
 ++++++++++++++++++++++++++++++
 sudo yum install -y ansible
 
-Install Vim Editor, Gti & tree utity
+Install Vim Editor, Git & tree utity
 +++++++++++++++++++++++++++++++
 yum install -y vim tree git
