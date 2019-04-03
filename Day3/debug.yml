@@ -1,0 +1,5 @@
+- name: Print the variables
+  hosts: all
+  tasks:
+    - name: Print the ansible user variable
+      debug: msg="Hostname is {{ansible_hostname}} and user is {{ansible_user}}."

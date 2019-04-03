@@ -1,0 +1,14 @@
+- name: Demonstrates accessing vault protected sensitive data in a secured fashion
+  hosts: localhost
+  vars_files:
+    - contacts.yml
+  vars:
+    - test_data:
+        name: some name
+        contact: 324234
+  tasks:
+    - debug: msg="{{item.value['name']}} ===> {{item.value.mobile}}"
+      with_dict: "{{contacts}}"
+
+    - debug: msg="Key is {{item.key}} and Value is {{item.value}}"
+      with_dict: "{{test_data}}"

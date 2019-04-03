@@ -1,0 +1,53 @@
+- name: This playbook will build ubuntu and centos ansible images 
+  hosts: localhost
+  vars:
+    proxy_configuration:
+       http_proxy: http://10.20.30.40:8080
+       https_proxy: https://10.20.30.40:8080
+
+    platform_dictionary:
+       ubuntu:
+           image: "tektutor/ansible-ubuntu"
+           dockerfile: "UbuntuDockerfile"
+       centos:
+           image: "tektutor/ansible-centos"
+           dockerfile: "CentOSDockerfile"
+
+    docker_images:
+       - "tektutor/ansible-ubuntu"
+       - "tektutor/ansible-centos"
+  tasks:
+    - name: Install Extra Package for Enterprise Linux (EPEL) in CentOS
+      when: ansible_distribution == "CentOS"
+      yum: name=epel-release state=latest
+      #with_dict: "{{proxy_configuration}}"
+
+    - name: Install Python package installer utility in CentOS
+      when: ansible_distribution == "CentOS"
+      yum: name=python-pip state=latest
+      #with_dict: "{{proxy_configuration}}"
+
+    - name: Install Python package installer utility in Ubuntu
+      when: ansible_distribution == "Ubuntu"
+      apt: name=python-pip state=latest update_cache=yes
+      #with_dict: "{{proxy_configuration}}"
+
+    - name: Install docker-py python package
+      shell: pip install docker-py 
+
+    - name: Delete all containers if there are any
+      shell: docker rm -f $(docker ps -aq)
+      ignore_errors: yes
+
+    - name: Delete all ansible images if there are any
+      shell: "docker rmi -f {{item}}" 
+      ignore_errors: yes
+      with_items: "{{docker_images}}"
+
+    - name: Build ansible ubuntu and centos images
+      docker_image:
+           name: "{{item.value.image}}"
+           state: build
+           path: .
+           dockerfile: "{{item.value.dockerfile}}"
+      with_dict: "{{platform_dictionary}}"
