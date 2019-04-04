@@ -6,7 +6,9 @@ This repository has all the lab code samples that I wrote during ansible trainin
 
 You could check the GitHub Wiki section for more instructions.
 
-Home Page https://github.com/tektutor/ansible-chennai-april-2019/wiki Docker Commands https://github.com/tektutor/ansible-chennai-april-2019/wiki/Docker Ansible Commands https://github.com/tektutor/devops-pune-march-2019/wiki/Ansible
+Home Page https://github.com/tektutor/ansible-chennai-april-2019/wiki 
+Docker Commands https://github.com/tektutor/ansible-chennai-april-2019/wiki/Docker 
+Ansible Commands https://github.com/tektutor/ansible-chennai-april-2019/wiki/Ansible
 
 Happy coding!
 
