@@ -1,0 +1,7 @@
+---
+# handlers file for apache
+- name: Restart the httpd service in CentOS
+  command: service httpd restart
+
+- name: Restart apache2 service in Ubuntu
+  command: service apache2 restart

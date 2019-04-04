@@ -1,0 +1,9 @@
+---
+
+- name: This playbook invokes our custom apache role
+  hosts: all
+
+  roles:
+     - apache
+     
+...

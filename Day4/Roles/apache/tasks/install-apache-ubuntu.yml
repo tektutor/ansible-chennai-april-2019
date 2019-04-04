@@ -1,0 +1,9 @@
+---
+
+- name: Install apache in Ubuntu
+  apt: name=apache2 state=latest update_cache=yes
+
+- name: Start apache server in Ubuntu
+  command: service apache2 start
+
+...

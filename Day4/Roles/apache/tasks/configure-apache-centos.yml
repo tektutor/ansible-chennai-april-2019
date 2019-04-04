@@ -1,0 +1,11 @@
+---
+
+- name: Configure httpd document root folder and grant permission in CentOS
+  copy:
+     src: httpd.conf
+     dest: /etc/httpd/conf/httpd.conf
+     backup: yes
+  notify:
+     - Restart the httpd service in CentOS
+
+...
