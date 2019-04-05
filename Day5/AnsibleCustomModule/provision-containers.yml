@@ -1,0 +1,43 @@
+- name: This playbook will provision couple of ubuntu and centos containers
+  hosts: localhost
+  tasks:
+    - name: Install Extra Package for Enterprise Linux (EPEL) in CentOS
+      when: ansible_distribution == "CentOS"
+      yum: name=epel-release state=latest
+
+    - name: Install Python package installer utility in CentOS
+      when: ansible_distribution == "CentOS"
+      yum: name=python-pip state=latest
+
+    - name: Install Python package installer utility in Ubuntu
+      when: ansible_distribution == "Ubuntu"
+      apt: name=python-pip state=latest update_cache=yes
+
+    - name: Install docker-py python package
+      shell: pip install docker-py 
+
+    - name: Delete all containers if there are any
+      shell: docker rm -f $(docker ps -aq)
+      ignore_errors: yes
+
+    - name: Provision ubuntu containers
+      docker_container:
+           name: "ubuntu{{item}}"
+           hostname: "ubuntu{{item}}"
+           image: "tektutor/ansible-ubuntu"
+           state: started
+           ports:
+             - "200{{item}}:22"
+             - "800{{item}}:80"
+      with_sequence: start=1 end=2
+
+    - name: Provision centos containers
+      docker_container:
+           name: "centos{{item}}"
+           hostname: "centos{{item}}"
+           image: "tektutor/ansible-centos"
+           state: started
+           ports:
+             - "300{{item}}:22"
+             - "900{{item}}:80"
+      with_sequence: start=1 end=2
