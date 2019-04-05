@@ -36,4 +36,11 @@ Ansible Getting Started https://docs.ansible.com/ansible/latest/user_guide/intro
 
 Maven setup for deploying artifacts to Sonatype Nexus https://blog.sonatype.com/using-nexus-3-as-your-repository-part-1-maven-artifacts
 
+Python good reads<br>
+http://docs.python-requests.org/en/master/user/quickstart/<br>
+https://www.w3schools.com/python/python_json.asp<br>
+https://www.datacamp.com/community/tutorials/python-excel-tutorial?utm_source=adwords_ppc&utm_campaignid=1455363063&utm_adgroupid=65083631748&utm_device=c&utm_keyword=&utm_matchtype=b&utm_network=g&utm_adpostion=1t1&utm_creative=278443377095&utm_targetid=aud-299261629574:dsa-473406585595&utm_loc_interest_ms=&utm_loc_physical_ms=9062114&gclid=Cj0KCQjws5HlBRDIARIsAOomqA3wjau_zp1Jbq3vRAXG7vVNAefuVoTFEe0trdbqWBZSy5UNvT8_CrkaAkxTEALw_wcB<br>
+https://www.learndatasci.com/tutorials/python-pandas-tutorial-complete-introduction-for-beginners/<br>
+https://www.youtube.com/playlist?list=PLeo1K3hjS3uuASpe-1LjfG5f14Bnozjwy<br>
+
 Please feel free to write me jegan@tektutor.org for any enquiries.
