@@ -1,32 +1,91 @@
-Update the Extra Packages for Enterprise Linux
-++++++++++++++++++++++++++++++++++++++++++++++
-yum install -y epel-release
-
-Installing Docker in CentOS 7
-+++++++++++++++++++++++++++++
-sudo yum install -y yum-utils \
-  device-mapper-persistent-data \
-  lvm2
-
-sudo yum-config-manager \
-    --add-repo \
-    https://download.docker.com/linux/centos/docker-ce.repo
-
-sudo yum install docker-ce docker-ce-cli containerd.io
-
-To check the version of docker installed
-+++++++++++++++++++++++++++++++++++++++++
-docker --version
-
-Enable Docker Service and Start the docker Service
-++++++++++++++++++++++++++++++++++++++++++++++++++
-sudo systemctl enable docker
-sudo systemctl start docker
-
 Installing Ansible in CentOS 7
 ++++++++++++++++++++++++++++++
 sudo yum install -y ansible
 
 Install Vim Editor, Git & tree utity
 +++++++++++++++++++++++++++++++
-yum install -y vim tree git
+sudo yum install -y vim tree git
+
+Instructions to install docker-ce in CentOS 7
+++++++++++++++++++++++++++++++++++++++++++++++
+sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+sudo yum install docker-ce
+
+You can check if your Docker is installed properly by checking docker version
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+docker --version
+
+To be able to use docker as a regular non-root user, you may do this
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+sudo usermod -aG docker jegan
+sudo su jegan
+
+Starting Docker Engine Service in CentOS
++++++++++++++++++++++++++++++++++++++++++
+sudo systemctl enable docker
+sudo systemctl start docker
+
+Downloading/Pulling an image to Local Docker Registry
++++++++++++++++++++++++++++++++++++++++++++++++++++++
+docker pull hello-world
+
+Deleting an unwanted image from Local Docker Registry
++++++++++++++++++++++++++++++++++++++++++++++++++++++
+docker rmi hello-world
+
+Listing docker images
++++++++++++++++++++++
+docker images
+
+Listing currently running docker containers
++++++++++++++++++++++++++++++++++++++++++++
+docker ps
+
+Listing only the container ids of currently running docker containers
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+docker ps -q
+
+Listing all containers including the ones that are exited
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+docker ps -a
+
+Listing only the container ids of all containers
+++++++++++++++++++++++++++++++++++++++++++++++++
+docker ps -aq
+
+Stopping a currently running container
+++++++++++++++++++++++++++++++++++++++
+docker stop ubuntu1
+docker stop <container-id>
+
+Starting a stopped/exited container
++++++++++++++++++++++++++++++++++++
+docker start ubuntu1
+docker start <container-id>
+
+Removing a container
+++++++++++++++++++++
+docker stop ubuntu1 && docker rm ubuntu1
+docker rm -f ubuntu1
+
+Removing all containers
++++++++++++++++++++++++
+docker stop $(docker ps -q) && docker rm $(docker ps -aq)
+docker rm -f $(docker ps -aq)
+
+Listing all default docker networks
++++++++++++++++++++++++++++++++++++
+docker network ls
+
+Creating a new docker network
++++++++++++++++++++++++++++++
+docker network create my-network-1
+
+Creating a new container and connecting to our custom network
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+docker run -d --name ubuntu1 --hostname ubuntu1 --network=my-network-1 ubuntu bash
+
+Finding more details about a particular docker network
+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+docker network inspect my-network-1
